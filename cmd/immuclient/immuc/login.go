@@ -34,21 +34,21 @@ func (i *immuc) Login(args []string) (string, error) {
 	var user []byte
 	if len(args) >= 1 {
 		user = []byte(args[0])
-	} else if len(i.options.immudbClientOptions.Username) > 0 {
-		user = []byte(i.options.immudbClientOptions.Username)
+	} else if len(i.options.username) > 0 {
+		user = []byte(i.options.username)
 	} else {
 		return "", errors.New("please specify a username")
 	}
 
 	var pass []byte
 	var err error
-	if len(i.options.immudbClientOptions.Password) == 0 {
+	if len(i.options.password) == 0 {
 		pass, err = i.options.passwordReader.Read("Password:")
 		if err != nil {
 			return "", err
 		}
 	} else {
-		pass = []byte(i.options.immudbClientOptions.Password)
+		pass = []byte(i.options.password)
 	}
 
 	ctx := context.Background()
