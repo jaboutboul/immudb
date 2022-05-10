@@ -345,6 +345,7 @@ func TestRemoteStorageUsedForNewDB(t *testing.T) {
 	defer os.RemoveAll("data")
 
 	s := DefaultServer()
+	s.Options.usingCustomListener = true
 	err := s.Initialize()
 	require.NoError(t, err)
 
